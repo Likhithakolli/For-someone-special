@@ -37,12 +37,14 @@
     }
     .heart {
       position: absolute; width: 20px; height: 20px;
-      background: red; transform: rotate(45deg);
+      background: pink; transform: rotate(45deg);
       animation: floatUp 4s linear infinite;
+      box-shadow: 0 0 10px hotpink, 0 0 20px deeppink;
     }
     .heart:before, .heart:after {
       content: ""; position: absolute;
-      width: 20px; height: 20px; background: red; border-radius: 50%;
+      width: 20px; height: 20px; background: pink; border-radius: 50%;
+      box-shadow: 0 0 10px hotpink, 0 0 20px deeppink;
     }
     .heart:before { top: -10px; left: 0; }
     .heart:after { left: 10px; top: 0; }
@@ -59,7 +61,7 @@
 </head>
 <body>
   <audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="likhi/song.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Page 1 -->
@@ -71,7 +73,7 @@
     <button onclick="nextPage(5)">No</button>
   </div>
 
-  <!-- Page 2: Full Love Letter with Emojis -->
+  <!-- Page 2 -->
   <div id="page2" class="card hidden">
     <div class="photo-frame">
       <img src="likhi/likhi.jpeg" alt="Photo" width="100%">
@@ -89,6 +91,7 @@ With all my love,
 Forever yours 💖
     </div>
     <button onclick="nextPage(3)">Next ➡️</button>
+    <button onclick="nextPage(1)">⬅️ Back</button>
   </div>
 
   <!-- Page 3 -->
@@ -96,11 +99,13 @@ Forever yours 💖
     <h2>💍 Will you marry me?</h2>
     <button onclick="nextPage(4)">Yes</button>
     <button onclick="nextPage(6)">No</button>
+    <button onclick="nextPage(2)">⬅️ Back</button>
   </div>
 
   <!-- Page 4 -->
   <div id="page4" class="card hidden">
     <div class="final">💖 Happy Valentine's Day Roshith 💖<br>Love you so much! 💕</div>
+    <button onclick="nextPage(3)">⬅️ Back</button>
   </div>
 
   <!-- Page 5 -->
@@ -108,11 +113,13 @@ Forever yours 💖
     <p>💔 I love you so much but now I hate you</p>
     <p>Will you marry me?</p>
     <button onclick="nextPage(6)">No</button>
+    <button onclick="nextPage(1)">⬅️ Back</button>
   </div>
 
   <!-- Page 6 -->
   <div id="page6" class="card hidden">
     <p>😢</p>
+    <button onclick="nextPage(3)">⬅️ Back</button>
   </div>
 
   <div class="hearts" id="hearts"></div>
@@ -121,7 +128,6 @@ Forever yours 💖
     function nextPage(page) {
       document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
       document.getElementById('page'+page).classList.remove('hidden');
-      // Trigger floating hearts on Page 2 and Page 4
       if(page === 2 || page === 4) {
         launchHearts();
       }
@@ -133,6 +139,8 @@ Forever yours 💖
         h.className = 'heart';
         h.style.left = Math.random()*100 + 'vw';
         h.style.animationDuration = (2+Math.random()*3)+'s';
+        h.style.width = (15+Math.random()*20)+'px';
+        h.style.height = h.style.width;
         hearts.appendChild(h);
         setTimeout(()=>h.remove(),4000);
       }
