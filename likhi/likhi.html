@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dude Bubu Hug</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: pink;
+      text-align: center;
+    }
+    .card {
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: hotpink;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: deeppink;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Dude Bubu Hug 💕</h1>
+    <!-- Animated image instead of emoji -->
+    <img src="dude-bubu.gif" alt="Dude Bubu Hug" style="width:100%; border-radius:15px;">
+    
+    <h2>Do you want to see a surprise?</h2>
+    <button onclick="showSurprise()">Yes</button>
+    <button onclick="showNo()">No</button>
+
+    <div id="surprise" class="hidden">
+      <h3>🎉 Surprise! You are my forever 💖</h3>
+    </div>
+
+    <div id="noResponse" class="hidden">
+      <p>I love you so much but now I hate you</p>
+      <p>Will you marry me?</p>
+      <button onclick="showSad()">No</button>
+    </div>
+
+    <div id="sadResponse" class="hidden">
+      <p>😢</p>
+    </div>
+  </div>
+
+  <script>
+    function showSurprise() {
+      document.getElementById('surprise').classList.remove('hidden');
+      document.getElementById('noResponse').classList.add('hidden');
+      document.getElementById('sadResponse').classList.add('hidden');
+    }
+    function showNo() {
+      document.getElementById('noResponse').classList.remove('hidden');
+      document.getElementById('surprise').classList.add('hidden');
+      document.getElementById('sadResponse').classList.add('hidden');
+    }
+    function showSad() {
+      document.getElementById('sadResponse').classList.remove('hidden');
+      document.getElementById('noResponse').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
