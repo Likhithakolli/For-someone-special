@@ -37,14 +37,14 @@
     }
     .heart {
       position: absolute; width: 20px; height: 20px;
-      background: pink; transform: rotate(45deg);
+      background: red; transform: rotate(45deg);
       animation: floatUp 4s linear infinite;
-      box-shadow: 0 0 10px hotpink, 0 0 20px deeppink;
+      box-shadow: 0 0 10px crimson, 0 0 20px darkred;
     }
     .heart:before, .heart:after {
       content: ""; position: absolute;
-      width: 20px; height: 20px; background: pink; border-radius: 50%;
-      box-shadow: 0 0 10px hotpink, 0 0 20px deeppink;
+      width: 20px; height: 20px; background: red; border-radius: 50%;
+      box-shadow: 0 0 10px crimson, 0 0 20px darkred;
     }
     .heart:before { top: -10px; left: 0; }
     .heart:after { left: 10px; top: 0; }
@@ -54,14 +54,16 @@
     }
     .photo-frame { border: 5px solid pink; padding: 10px; margin: 20px auto; display: inline-block; background: white; }
     .love-letter { font-family: "Times New Roman", serif; font-size: 18px; margin-top: 20px; text-align: left; white-space: pre-line; line-height: 1.6; }
-    .final { font-size: 28px; font-weight: bold; color: crimson; animation: glow 2s ease-in-out infinite alternate; }
+    .final { font-size: 24px; font-weight: bold; color: crimson; animation: glow 2s ease-in-out infinite alternate; }
     @keyframes glow { from { text-shadow: 0 0 10px pink; } to { text-shadow: 0 0 20px red; } }
     .hidden { display: none; }
   </style>
 </head>
 <body>
+  <!-- Background music from likhi folder -->
   <audio autoplay loop>
     <source src="likhi/song.mp3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
   <!-- Page 1 -->
@@ -81,11 +83,11 @@
     <div class="love-letter">
 💌 My dearest Roshith 💌,
 
-Every day with you feels like a blessing 🌸. Even on the days when life feels heavy 😔, when the world seems unfair 🌍, or when I feel tired 😴, your love is the light that carries me through ✨. You are my safe place 🏡, my joy 😍, and my forever 💖. I want you to know that no matter what happens, I will always be here for you 🤝. My love is not only for the good days 🌞 — it is for the quiet ones too 🌙, when you need someone to lean on 🤗, when you feel alone 💭, when you need to be reminded that you are deeply loved ❤️.
+Every day with you feels like a blessing 🌸. Even when I feel tired 😴, your love is the light that carries me through ✨. You are my safe place 🏡, my joy 😍, and my forever 💖.  
 
-I want to spend all my life with you — through every laugh 😂, every tear 😢, every quiet evening 🌆, and every adventure 🌍. I want to share my mornings ☀️, my nights 🌙, my dreams ✨, and even my worries 🤔 with you. You are not just my love 💕, you are my home 🏡, my comfort 🌸, and my strength 💪. I want your presence 👩‍❤️‍👨, your attention 👀, and your love 💖, because that is what makes me whole 🌹.
+I want to spend all my life with you — through every laugh 😂, every tear 😢, every quiet evening 🌆, and every adventure 🌍. You are not just my love 💕, you are my home 🏡, my comfort 🌸, and my strength 💪.  
 
-I promise to hold your hand ✋ when you are strong 💪 and when you feel weak 😔. I promise to love you endlessly 💞, faithfully 💍, and unconditionally 💖. You are my everything 🌎, and I will never stop choosing you 💕. Even on the hardest days 😢, I will remind you that you are loved beyond measure 💖, and that my heart beats only for you ❤️‍🔥.
+I promise to hold your hand ✋ when you are strong 💪 and when you feel weak 😔. I promise to love you endlessly 💞, faithfully 💍, and unconditionally 💖. You are my everything 🌎, and I will never stop choosing you 💕.  
 
 With all my love,  
 Forever yours 💖
@@ -104,7 +106,12 @@ Forever yours 💖
 
   <!-- Page 4 -->
   <div id="page4" class="card hidden">
-    <div class="final">💖 Happy Valentine's Day Roshith 💖<br>Love you so much! 💕</div>
+    <div class="final">
+      💖 Happy Valentine's Day Roshith 💖<br>
+      I love you so much 💕<br><br>
+      Do you like this surprise? 🌸  
+      <button onclick="nextPage(7)">Yes</button>
+    </div>
     <button onclick="nextPage(3)">⬅️ Back</button>
   </div>
 
@@ -122,24 +129,30 @@ Forever yours 💖
     <button onclick="nextPage(3)">⬅️ Back</button>
   </div>
 
+  <!-- Page 7: Final Hug -->
+  <div id="page7" class="card hidden">
+    <h2>Love you 💖 Byeee 🤗</h2>
+    <p>Sending you endless hugs and kisses 💋💞</p>
+    <button onclick="nextPage(1)">Restart 🔄</button>
+  </div>
+
   <div class="hearts" id="hearts"></div>
 
   <script>
     function nextPage(page) {
       document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
       document.getElementById('page'+page).classList.remove('hidden');
-      if(page === 2 || page === 4) {
-        launchHearts();
-      }
+      // Hearts float on every page
+      launchHearts();
     }
     function launchHearts() {
       const hearts = document.getElementById('hearts');
-      for(let i=0;i<20;i++) {
+      for(let i=0;i<30;i++) {
         const h = document.createElement('div');
         h.className = 'heart';
         h.style.left = Math.random()*100 + 'vw';
         h.style.animationDuration = (2+Math.random()*3)+'s';
-        h.style.width = (15+Math.random()*20)+'px';
+        h.style.width = (15+Math.random()*25)+'px';
         h.style.height = h.style.width;
         hearts.appendChild(h);
         setTimeout(()=>h.remove(),4000);
@@ -148,4 +161,3 @@ Forever yours 💖
   </script>
 </body>
 </html>
-
