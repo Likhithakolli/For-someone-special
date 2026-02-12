@@ -9,6 +9,7 @@
       font-family: Arial, sans-serif;
       background: pink;
       text-align: center;
+      overflow-x: hidden;
     }
     .card {
       margin: 50px auto;
@@ -19,66 +20,87 @@
       max-width: 600px;
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
-    .hidden {
-      display: none;
-    }
     button {
-      margin: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
       background: hotpink;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
     }
-    button:hover {
-      background: deeppink;
-    }
+    button:hover { background: deeppink; }
+    .photo-frame { border: 5px solid pink; padding: 10px; margin: 20px auto; display: inline-block; background: white; }
+    .love-letter { font-family: "Times New Roman", serif; font-size: 18px; margin-top: 20px; text-align: left; white-space: pre-line; line-height: 1.6; }
+    .final { font-size: 28px; font-weight: bold; color: crimson; animation: glow 2s ease-in-out infinite alternate; }
+    @keyframes glow { from { text-shadow: 0 0 10px pink; } to { text-shadow: 0 0 20px red; } }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Dude Bubu Hug 💕</h1>
-    <!-- Animated image instead of emoji -->
-    <img src="likhi/dude-bubu.gif" alt="Dude Bubu Hug" style="width:100%; border-radius:15px;">
-    
-    <h2>Do you want to see a surprise?</h2>
-    <button onclick="showSurprise()">Yes</button>
-    <button onclick="showNo()">No</button>
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
 
-    <div id="surprise" class="hidden">
-      <h3>🎉 Surprise! You are my forever 💖</h3>
-    </div>
+  <!-- Page 1 -->
+  <div id="page1" class="card">
+    <h2>Dude & Bubu Hug 🤗</h2>
+    <img src="dude-bubu.gif" alt="Dude Bubu Hug" style="width:100%; border-radius:15px;">
+    <p>Do you want to see a surprise?</p>
+    <button onclick="nextPage(2)">Yes</button>
+    <button onclick="nextPage(5)">No</button>
+  </div>
 
-    <div id="noResponse" class="hidden">
-      <p>I love you so much but now I hate you</p>
-      <p>Will you marry me?</p>
-      <button onclick="showSad()">No</button>
+  <!-- Page 2: Full Love Letter with Emojis -->
+  <div id="page2" class="card hidden">
+    <div class="photo-frame">
+      <img src="likhi.jpg" alt="Photo" width="100%">
     </div>
+    <div class="love-letter">
+💌 My dearest Roshith 💌,
 
-    <div id="sadResponse" class="hidden">
-      <p>😢</p>
+Every day with you feels like a blessing 🌸. Even on the days when life feels heavy 😔, when the world seems unfair 🌍, or when I feel tired 😴, your love is the light that carries me through ✨. You are my safe place 🏡, my joy 😍, and my forever 💖. I want you to know that no matter what happens, no matter how many storms we face ⛈️, I will always be here for you 🤝. My love is not only for the good days 🌞 — it is for the quiet ones too 🌙, when you need someone to lean on 🤗, when you feel alone 💭, when you need to be reminded that you are deeply loved ❤️.
+
+I want to spend all my life with you — through every laugh 😂, every tear 😢, every quiet evening 🌆, and every adventure 🌍. I want to share my mornings ☀️, my nights 🌙, my dreams ✨, and even my worries 🤔 with you. You are not just my love 💕, you are my home 🏡, my comfort 🌸, and my strength 💪. I want your presence 👩‍❤️‍👨, your attention 👀, and your love 💖, because that is what makes me whole 🌹.
+
+I promise to stand by you when life is kind 🌞 and when it feels hard 🌧️. I promise to hold your hand ✋ when you are strong 💪 and when you feel weak 😔. I promise to love you endlessly 💞, faithfully 💍, and unconditionally 💖. You are my everything 🌎, and I will never stop choosing you 💕. Even on the hardest days 😢, I will remind you that you are loved beyond measure 💖, and that my heart beats only for you ❤️‍🔥.
+
+With all my love,  
+Forever yours 💖
     </div>
+    <button onclick="nextPage(3)">Next ➡️</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div id="page3" class="card hidden">
+    <h2>💍 Will you marry me?</h2>
+    <button onclick="nextPage(4)">Yes</button>
+    <button onclick="nextPage(6)">No</button>
+  </div>
+
+  <!-- Page 4 -->
+  <div id="page4" class="card hidden">
+    <div class="final">💖 Happy Valentine's Day Roshith 💖<br>Love you so much! 💕</div>
+  </div>
+
+  <!-- Page 5 -->
+  <div id="page5" class="card hidden">
+    <p>💔 I love you so much but now I hate you</p>
+    <p>Will you marry me?</p>
+    <button onclick="nextPage(6)">No</button>
+  </div>
+
+  <!-- Page 6 -->
+  <div id="page6" class="card hidden">
+    <p>😢</p>
   </div>
 
   <script>
-    function showSurprise() {
-      document.getElementById('surprise').classList.remove('hidden');
-      document.getElementById('noResponse').classList.add('hidden');
-      document.getElementById('sadResponse').classList.add('hidden');
-    }
-    function showNo() {
-      document.getElementById('noResponse').classList.remove('hidden');
-      document.getElementById('surprise').classList.add('hidden');
-      document.getElementById('sadResponse').classList.add('hidden');
-    }
-    function showSad() {
-      document.getElementById('sadResponse').classList.remove('hidden');
-      document.getElementById('noResponse').classList.add('hidden');
+    function nextPage(page) {
+      document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+      document.getElementById('page'+page).classList.remove('hidden');
     }
   </script>
 </body>
-
 </html>
-
